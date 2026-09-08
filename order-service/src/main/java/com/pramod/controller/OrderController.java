@@ -2,13 +2,13 @@ package com.pramod.controller;
 
 import com.pramod.entity.PurchaseOrder;
 import com.pramod.saga.commons.dto.OrderRequestDto;
+import com.pramod.saga.commons.dto.OrderResponseDto;
 import com.pramod.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
     public final OrderService orderService;
+
     //constructor injection
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
@@ -26,5 +27,15 @@ public class OrderController {
 
         PurchaseOrder res = orderService.createOrder(orderRequestDto);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
+    }
+
+
+    @GetMapping("get-all-order")
+    public ResponseEntity<List<OrderResponseDto>> getOrder() {
+
+
+        List<OrderResponseDto> res = orderService.getAllOrder();
+        return new ResponseEntity<>(res, HttpStatus.OK);
+
     }
 }
