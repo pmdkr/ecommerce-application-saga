@@ -1,0 +1,27 @@
+spring:
+  application:
+    name:order-service
+
+  datasource:
+    url:jdbc:mysql://localhost:3306/javadb
+    username:root
+    password:pramod
+    driver-class-name:com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto:update
+      show-sql:true
+  properties:
+    hibernate:
+      format_sql:true
+  database-platform: org.hibernate.dialect.MySQLDialect
+
+
+
+
+server:
+  port:8082
+
+
+
